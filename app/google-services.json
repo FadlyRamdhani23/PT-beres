@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "197032019443",
+    "project_id": "pt-hairpass",
+    "storage_bucket": "pt-hairpass.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197032019443:android:260af5bac734d8ed7b7e86",
+        "android_client_info": {
+          "package_name": "com.afg.hairpass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197032019443-hi86n13rqnaoukv5u47kuudt5m5spfr6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChVqKV8EvBdYxc_-Zpcg9aZQkkPPNIZyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "197032019443-hi86n13rqnaoukv5u47kuudt5m5spfr6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

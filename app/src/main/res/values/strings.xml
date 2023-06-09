@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">Hair Pass</string>
+    <string name="deskripsi_jenis">HAIR PASS STUDIO</string>
+    <string name="deskripsi_jenisZ">HALAMAN ADMIN</string>
+    <string name="anorganik"><b>1. Store Jl.Radio palasari STT Telkom</b>\n\n Perlu penyegaran gaya rambut? Ayo kunjungi barbershop kami dan rasakan perbedaannya! Kami menantikan kehadiran Anda untuk sesi cukur yang menyegarkan dan membuat Anda tampil lebih percaya diri. Jangan lewatkan kesempatan ini, buat janji sekarang dan nikmati pengalaman cukur yang istimewa!"</string>
+    <string name="organik"><b>2. Store Jl.Rancamanyar No.1</b>\n\nTinggalkan tampilan lama dan ciptakan gaya baru yang keren! Mari bergabung dengan kami di barbershop kami untuk mendapatkan perawatan rambut terbaik. Dengan para ahli potong rambut kami, Anda akan merasakan sentuhan profesional dan hasil yang memukau. Jadi, tunggu apa lagi? Jadilah yang pertama untuk mencoba tren rambut terbaru. Segera kunjungi barbershop kami dan nikmati pengalaman yang tak terlupakan!</string>
+    <string-array name="kategori_sampah">
+        <item>Pilih cabang</item>
+        <item>1st.Store Jl.Radio palasari STT Telkom</item>
+        <item>2st.Store Jl.Rancamanyar No.1</item>
+    </string-array>
+    <string-array name="harga_perkilo">
+<item>0</item>
+        <item>30000</item>
+        <item>30000</item>
+    </string-array>
+
+
+
+    <string-array name="my_array">
+        <item>09:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>18:00</item>
+        <item>19:00</item>
+        <item>20:00</item>
+
+
+    </string-array>
+    <string name="kata_1">Halo sob kita lagi ada promo versi new normal ni Yuki gercep ke barber untuk rapihin rambut kamu yg udh gk karuan tu,  karna kemarin PSBB😬</string>
+    <string name="kata_2"> Cukur Sekarang</string>
+    <string name="kata_12"> Daftar Pelanggan</string>
+    <string name="kata_9"> Tentang Cabang</string>
+    <string name="kata_3"> Book</string>
+    <string name="kata_4">HAIR PASS MERUPAKAN TEMPAT CUKUR RAMBUT YANG MENYEDIAKAN BERBAGAI TIPE POTONGAN RAMBUT.
+</string>
+    <string name="kata_45">HAIR PASS MERUPAKAN TEMPAT CUKUR RAMBUT YANG MENYEDIAKAN BERBAGAI TIPE POTONGAN RAMBUT.
+</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="register">REGISTER</string>
+    <string name="ConPassword">Confirm Password</string>
+    <string name="login_title">LOGIN</string>
+
+    <style name="LoginTextInputOuterFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
+    <style name="LoginTextInputInnerFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+</resources>
