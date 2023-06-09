@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.afg.hairpass.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import com.afg.hairpass.view.history.RiwayatActivity
 import com.afg.hairpass.view.history.activityBooking
 import com.afg.hairpass.view.input.InputDataActivity
 import com.afg.hairpass.view.jenis.cabangActivity

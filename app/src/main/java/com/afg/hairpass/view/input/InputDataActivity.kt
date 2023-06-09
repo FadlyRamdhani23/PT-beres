@@ -16,7 +16,6 @@ import com.afg.hairpass.model.ModelDatabase
 import com.afg.hairpass.utils.FunctionHelper.rupiahFormat
 import com.afg.hairpass.view.login.LoginActivity
 import com.afg.hairpass.view.sesion.sesionManager
-import com.afg.hairpass.viewmodel.InputDataViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_input_data.*
 import java.text.SimpleDateFormat
@@ -24,7 +23,6 @@ import java.util.*
 
 class InputDataActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
-    lateinit var inputDataViewModel: InputDataViewModel
     lateinit var strNama: String
     lateinit var waw: String
     lateinit var wiw: String
@@ -229,8 +227,6 @@ class InputDataActivity : AppCompatActivity() {
         strKategori = resources.getStringArray(R.array.kategori_sampah)
         strHarga = resources.getStringArray(R.array.harga_perkilo)
 
-        inputDataViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.application)).get(
-            InputDataViewModel::class.java)
 
         val arrayBahasa = ArrayAdapter(this@InputDataActivity, android.R.layout.simple_list_item_1, strKategori)
         arrayBahasa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -488,17 +484,8 @@ class InputDataActivity : AppCompatActivity() {
                     "berat" to wiw,
                 )
                 val Booking=db.collection("BOOKING")
-
                 Booking.add(booking)
-                inputDataViewModel.addDataSampah(
-                    strNama,
-                    strKategoriSelected,
-                    countBerat,
-                    countTotal,
-                    strTanggal,
-                    selectedSeat,
-                    strCatatan
-                )
+
                 Toast.makeText(
                     this@InputDataActivity,
                     "Pesanan Anda sedang diproses, cek di menu riwayat",

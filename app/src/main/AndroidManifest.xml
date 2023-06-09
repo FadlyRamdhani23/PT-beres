@@ -18,9 +18,7 @@
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="s">
-        <activity
-            android:name="com.afg.hairpass.view.history.RiwayatActivity"
-            android:exported="true" />
+
         <activity
             android:name="com.afg.hairpass.view.input.InputDataActivity"
             android:exported="true" />

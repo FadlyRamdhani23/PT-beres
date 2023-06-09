@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.afg.hairpass.R
-import com.afg.hairpass.view.history.RiwayatActivity
 import com.afg.hairpass.view.history.activityBooking
 import com.afg.hairpass.view.input.InputDataActivity
-import com.afg.hairpass.view.jenis.cabangActivity
 import com.afg.hairpass.view.login.LoginActivity
 import com.afg.hairpass.view.main.MainActivity
 import com.afg.hairpass.view.sesion.sesionManager
