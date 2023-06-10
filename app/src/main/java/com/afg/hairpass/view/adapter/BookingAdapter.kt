@@ -2,11 +2,10 @@ package com.afg.hairpass.view.admin
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+
 import androidx.recyclerview.widget.RecyclerView
 import com.afg.hairpass.R
 import com.afg.hairpass.model.bookingModel
-import com.afg.hairpass.utils.FunctionHelper
 import kotlinx.android.synthetic.main.list_item_riwayat.view.*
 
 

@@ -7,13 +7,15 @@
     android:layout_marginEnd="10dp"
     android:layout_marginBottom="10dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="20dp"
+    android:layout_centerHorizontal="@android:color/transparent"
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical"
         android:padding="15dp">
 
@@ -54,49 +56,17 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:orientation="vertical"
-                android:text="asd">
-
-                <TextView
-                    android:id="@+id/tvBerat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tvSaldo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="15dp"
-        android:src="@drawable/ic_delete"
-        app:tint="@color/colorPrimary" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageDelete"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="end|bottom"-->
+<!--        android:layout_margin="15dp"-->
+<!--        android:src="@drawable/ic_delete"-->
+<!--        app:tint="@color/colorPrimary" />-->
 
 </androidx.cardview.widget.CardView>

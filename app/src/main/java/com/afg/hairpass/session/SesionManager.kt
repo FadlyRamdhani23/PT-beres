@@ -1,4 +1,4 @@
-package com.afg.hairpass.view.sesion
+package com.afg.hairpass.session
 
 import android.content.Context
 import android.content.SharedPreferences

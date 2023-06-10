@@ -23,7 +23,7 @@
             android:name="com.afg.hairpass.view.input.InputDataActivity"
             android:exported="true" />
         <activity
-            android:name="com.afg.hairpass.view.jenis.cabangActivity"
+            android:name="com.afg.hairpass.view.cabang.cabangActivity"
             android:exported="true" />
         <activity
             android:name="com.afg.hairpass.view.login.LoginActivity"
@@ -59,7 +59,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         <activity
-            android:name="com.afg.hairpass.view.history.activityBooking"
+            android:name="com.afg.hairpass.view.booking.activityBooking"
             android:exported="true" />
         <meta-data
             android:name="preloaded_fonts"

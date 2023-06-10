@@ -1,4 +1,4 @@
-package com.afg.hairpass.view.history
+package com.afg.hairpass.view.booking
 
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +10,6 @@ import com.afg.hairpass.model.bookingModel
 import com.afg.hairpass.view.admin.BookingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_riwayat.*
-import kotlinx.android.synthetic.main.daftar_pelanggan.*
 
 class activityBooking : AppCompatActivity(){
 
@@ -65,6 +64,8 @@ class activityBooking : AppCompatActivity(){
                 rvHistory.apply {
                     layoutManager = LinearLayoutManager(context)
                     adapter = BookingAdapter
+                    rvHistory.setHasFixedSize(true)
+
                 }
             }
             .addOnFailureListener{

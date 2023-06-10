@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.daftar_pelanggan.*
 
 
 class activityUser : AppCompatActivity() {
-
-
     private lateinit var db: FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

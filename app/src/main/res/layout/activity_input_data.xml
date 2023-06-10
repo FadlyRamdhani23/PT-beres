@@ -211,7 +211,7 @@
                                 android:layout_marginTop="10dp"
                                 android:text="Pilih"
                                 android:background="@drawable/spinner_background"
-                                android:entries="@array/kategori_sampah"
+                                android:entries="@array/kategori_cabang"
                                 android:spinnerMode="dropdown" />
 
                             <ImageView

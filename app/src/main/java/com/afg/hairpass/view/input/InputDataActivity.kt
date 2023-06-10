@@ -1,5 +1,6 @@
 package com.afg.hairpass.view.input
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Intent
@@ -10,12 +11,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.afg.hairpass.R
-import com.afg.hairpass.model.ModelDatabase
 import com.afg.hairpass.utils.FunctionHelper.rupiahFormat
+
 import com.afg.hairpass.view.login.LoginActivity
-import com.afg.hairpass.view.sesion.sesionManager
+import com.afg.hairpass.session.sesionManager
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_input_data.*
 import java.text.SimpleDateFormat
@@ -23,23 +23,22 @@ import java.util.*
 
 class InputDataActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
-    lateinit var strNama: String
-    lateinit var waw: String
-    lateinit var wiw: String
-    lateinit var strTanggal: String
-    lateinit var strAlamat: String
-    lateinit var strCatatan: String
-    lateinit var strKategoriSelected: String
-    lateinit var strHargaSelected: String
-    lateinit var strKategori: Array<String>
-    lateinit var strHarga: Array<String>
+    private lateinit var strNama: String
+    private lateinit var waw: String
+    private lateinit var wiw: String
+    private lateinit var strTanggal: String
+    private lateinit var strAlamat: String
+    private lateinit var strCatatan: String
+    private lateinit var strKategoriSelected: String
+    private lateinit var strHargaSelected: String
+    private lateinit var strKategori: Array<String>
+    private lateinit var strHarga: Array<String>
     private lateinit var sesionManager: sesionManager
     private var selectedSeat: String = ""
     private var isSeatSelected = false
-    lateinit var modelDatabase: MutableList<ModelDatabase>
-    var countTotal = 0
-    var countBerat = 0
-    var countHarga = 0
+    private var countTotal = 0
+    private var countBerat = 0
+    private var countHarga = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,64 +54,24 @@ class InputDataActivity : AppCompatActivity() {
         setToolbar()
         setInitLayout()
         setInputData()
-//        updateHourTextViews()
+        updateHourTextViews()
         checkIfDataExists()
-    setText(email)
+        setText(email)
     }
-
-//    @SuppressLint("SuspiciousIndentation")
-//    private fun updateHourTextViews() {
-//        val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-//            if (currentHour >= 9) {
-//                jam9.setImageResource(R.drawable.jam9a)
-//            }
-//            if (currentHour >= 10) {
-//                jam10.setImageResource(R.drawable.jam11a)
-//            }
-//            if (currentHour >= 11) {
-//                jam11.setImageResource(R.drawable.jam11a)
-//            }
-//            if (currentHour >= 12) {
-//                jam12.setImageResource(R.drawable.jam12a)
-//            }
-//            if (currentHour >= 13) {
-//                jam13.setImageResource(R.drawable.jam13a)
-//            }
-//            if (currentHour >= 14) {
-//                jam14.setImageResource(R.drawable.jam14a)
-//            }
-//            if (currentHour >= 15) {
-//                jam15.setImageResource(R.drawable.jam15a)
-//            }
-//            if (currentHour >= 16) {
-//                jam16.setImageResource(R.drawable.jam16a)
-//            }
-//            if (currentHour >= 17) {
-//                jam17.setImageResource(R.drawable.jam17a)
-//            }
-//            if (currentHour >= 18) {
-//                jam18.setImageResource(R.drawable.jam18a)
-//            }
-//            if (currentHour >= 19) {
-//                jam19.setImageResource(R.drawable.jam19a)
-//            }
-//            if (currentHour >= 20) {
-//                jam20.setImageResource(R.drawable.jam20a)
-//            }
-//        jam9.isEnabled = currentHour < 9
-//        jam10.isEnabled = currentHour < 10
-//        jam11.isEnabled = currentHour < 11
-//        jam12.isEnabled = currentHour < 12
-//        jam13.isEnabled = currentHour < 13
-//        jam14.isEnabled = currentHour < 14
-//        jam15.isEnabled = currentHour < 15
-//        jam16.isEnabled = currentHour < 16
-//        jam17.isEnabled = currentHour < 17
-//        jam18.isEnabled = currentHour < 18
-//        jam19.isEnabled = currentHour < 19
-//        jam20.isEnabled = currentHour < 20
-//    }
-
+    private fun setToolbar() {
+        setSupportActionBar(toolbar)
+        if (supportActionBar != null) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     private fun setText(email:String?){
         db= FirebaseFirestore.getInstance()
@@ -125,12 +84,58 @@ class InputDataActivity : AppCompatActivity() {
         }
     }
 
-    private fun setToolbar() {
-        setSupportActionBar(toolbar)
-        if (supportActionBar != null) {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowTitleEnabled(false)
-        }
+
+    @SuppressLint("SuspiciousIndentation")
+    private fun updateHourTextViews() {
+        val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+            if (currentHour >= 9) {
+                jam9.setImageResource(R.drawable.jam9a)
+            }
+            if (currentHour >= 10) {
+                jam10.setImageResource(R.drawable.jam11a)
+            }
+            if (currentHour >= 11) {
+                jam11.setImageResource(R.drawable.jam11a)
+            }
+            if (currentHour >= 12) {
+                jam12.setImageResource(R.drawable.jam12a)
+            }
+            if (currentHour >= 13) {
+                jam13.setImageResource(R.drawable.jam13a)
+            }
+            if (currentHour >= 14) {
+                jam14.setImageResource(R.drawable.jam14a)
+            }
+            if (currentHour >= 15) {
+                jam15.setImageResource(R.drawable.jam15a)
+            }
+            if (currentHour >= 16) {
+                jam16.setImageResource(R.drawable.jam16a)
+            }
+            if (currentHour >= 17) {
+                jam17.setImageResource(R.drawable.jam17a)
+            }
+            if (currentHour >= 18) {
+                jam18.setImageResource(R.drawable.jam18a)
+            }
+            if (currentHour >= 19) {
+                jam19.setImageResource(R.drawable.jam19a)
+            }
+            if (currentHour >= 20) {
+                jam20.setImageResource(R.drawable.jam20a)
+            }
+        jam9.isEnabled = currentHour < 9
+        jam10.isEnabled = currentHour < 10
+        jam11.isEnabled = currentHour < 11
+        jam12.isEnabled = currentHour < 12
+        jam13.isEnabled = currentHour < 13
+        jam14.isEnabled = currentHour < 14
+        jam15.isEnabled = currentHour < 15
+        jam16.isEnabled = currentHour < 16
+        jam17.isEnabled = currentHour < 17
+        jam18.isEnabled = currentHour < 18
+        jam19.isEnabled = currentHour < 19
+        jam20.isEnabled = currentHour < 20
     }
 
     private fun checkIfDataExists(): Boolean {
@@ -224,8 +229,8 @@ class InputDataActivity : AppCompatActivity() {
     }
 
     private fun setInitLayout() {
-        strKategori = resources.getStringArray(R.array.kategori_sampah)
-        strHarga = resources.getStringArray(R.array.harga_perkilo)
+        strKategori = resources.getStringArray(R.array.kategori_cabang)
+        strHarga = resources.getStringArray(R.array.harga_orang)
 
 
         val arrayBahasa = ArrayAdapter(this@InputDataActivity, android.R.layout.simple_list_item_1, strKategori)
@@ -496,11 +501,4 @@ class InputDataActivity : AppCompatActivity() {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }

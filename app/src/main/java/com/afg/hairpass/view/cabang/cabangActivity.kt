@@ -1,4 +1,4 @@
-package com.afg.hairpass.view.jenis
+package com.afg.hairpass.view.cabang
 
 import android.os.Bundle
 import android.view.MenuItem
