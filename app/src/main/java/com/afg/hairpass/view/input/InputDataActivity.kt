@@ -221,6 +221,44 @@ class InputDataActivity : AppCompatActivity() {
             }
 
         } else {
+            val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+            if (currentHour >= 9) {
+                jam9.setImageResource(R.drawable.jam9a)
+            }
+            if (currentHour >= 10) {
+                jam10.setImageResource(R.drawable.jam10a)
+            }
+            if (currentHour >= 11) {
+                jam11.setImageResource(R.drawable.jam11a)
+            }
+            if (currentHour >= 12) {
+                jam12.setImageResource(R.drawable.jam12a)
+            }
+            if (currentHour >= 13) {
+                jam13.setImageResource(R.drawable.jam13a)
+            }
+            if (currentHour >= 14) {
+                jam14.setImageResource(R.drawable.jam14a)
+            }
+            if (currentHour >= 15) {
+                jam15.setImageResource(R.drawable.jam15a)
+            }
+            if (currentHour >= 16) {
+                jam16.setImageResource(R.drawable.jam16a)
+            }
+            if (currentHour >= 17) {
+                jam17.setImageResource(R.drawable.jam17a)
+            }
+            if (currentHour >= 18) {
+                jam18.setImageResource(R.drawable.jam18a)
+            }
+            if (currentHour >= 19) {
+                jam19.setImageResource(R.drawable.jam19a)
+            }
+            if (currentHour >= 20) {
+                jam20.setImageResource(R.drawable.jam20a)
+            }
+
             jam9.isEnabled = currentHour < 9
             jam10.isEnabled = currentHour < 10
             jam11.isEnabled = currentHour < 11
@@ -325,99 +363,6 @@ class InputDataActivity : AppCompatActivity() {
             }
         }
     }
-
-//    private fun checkIfDataExists(): Boolean {
-//        val db = FirebaseFirestore.getInstance()
-//        val collectionRef = db.collection("BOOKING")
-//        val query1 = collectionRef.whereEqualTo("Jam","09:00").limit(1)
-//        query1.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam9.isEnabled = false
-//                jam9.setImageResource(R.drawable.jam9a)
-//            }
-//        } .addOnFailureListener { exception ->
-//            Toast.makeText(this@InputDataActivity, "Username atau password salah", Toast.LENGTH_SHORT).show()
-//        }
-//        val query2 = collectionRef.whereEqualTo("Jam","10:00").limit(1)
-//        query2.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam10.isEnabled = false
-//                jam10.setImageResource(R.drawable.jam10a)
-//            }
-//        }
-//        val query3 = collectionRef.whereEqualTo("Jam","11:00").limit(1)
-//        query3.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam11.isEnabled = false
-//                jam11.setImageResource(R.drawable.jam11a)
-//            }
-//        }
-//        val query4 = collectionRef.whereEqualTo("Jam","12:00").limit(1)
-//        query4.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam12.isEnabled = false
-//                jam12.setImageResource(R.drawable.jam12a)
-//            }
-//        }
-//        val query5 = collectionRef.whereEqualTo("Jam","13:00").limit(1)
-//        query5.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam13.isEnabled = false
-//                jam13.setImageResource(R.drawable.jam13a)
-//            }
-//        }
-//        val query6 = collectionRef.whereEqualTo("Jam","14:00").limit(1)
-//        query6.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam14.isEnabled = false
-//                jam14.setImageResource(R.drawable.jam14a)
-//            }
-//        }
-//        val query7 = collectionRef.whereEqualTo("Jam","15:00").limit(1)
-//        query7.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam15.isEnabled = false
-//                jam15.setImageResource(R.drawable.jam15a)
-//            }
-//        }
-//        val query8 = collectionRef.whereEqualTo("Jam","16:00").limit(1)
-//        query8.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam16.isEnabled = false
-//                jam16.setImageResource(R.drawable.jam16a)
-//            }
-//        }
-//        val query9 = collectionRef.whereEqualTo("Jam","17:00").limit(1)
-//        query9.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam17.isEnabled = false
-//                jam17.setImageResource(R.drawable.jam17a)
-//            }
-//        }
-//        val query10 = collectionRef.whereEqualTo("Jam","18:00").limit(1)
-//        query10.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam18.isEnabled = false
-//                jam18.setImageResource(R.drawable.jam18a)
-//            }
-//        }
-//        val query11 = collectionRef.whereEqualTo("Jam","19:00").limit(1)
-//        query11.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam19.isEnabled = false
-//                jam19.setImageResource(R.drawable.jam19a)
-//            }
-//        }
-//        val query12 = collectionRef.whereEqualTo("Jam","20:00").limit(1)
-//        query12.get().addOnSuccessListener { documents ->
-//            if (documents.size() > 0) {
-//                jam20.isEnabled = false
-//                jam20.setImageResource(R.drawable.jam20a)
-//            }
-//        }
-//        return false // Mengembalikan nilai default (dalam contoh ini, false)
-//    }
-
     private fun setInitLayout() {
         strKategori = resources.getStringArray(R.array.kategori_cabang)
         strHarga = resources.getStringArray(R.array.harga_orang)

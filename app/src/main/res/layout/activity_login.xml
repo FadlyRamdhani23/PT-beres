@@ -7,16 +7,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroudreal"
     >
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="105dp"
         android:layout_height="146dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toTopOf="@+id/registerTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.372"
         app:srcCompat="@drawable/group_13" />
 
 
@@ -38,12 +38,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="384dp"
-        android:layout_height="207dp"
-
+        android:layout_width="397dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="40dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/signin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,16 +94,6 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/signUpqz"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat"
-                android:text="Not Registered Yet , Sign Up !"
-                android:textColor="@color/black" />
-
 
         </LinearLayout>
 
@@ -112,27 +101,36 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/signin"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-
+        android:id="@+id/signIn"
+        android:layout_width="401dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/cardView"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_semibold"
         android:text="Sign In"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:theme="@style/Theme.MaterialComponents"
+        android:theme="@style/Theme.MaterialComponents.Light"
         app:backgroundTint="#656969"
         app:cornerRadius="50dp"
-        app:elevation="5dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.134"
-        app:rippleColor="@color/colorPrimaryDark" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signUpa"
+        android:layout_width="399dp"
+        android:layout_height="59dp"
+        android:layout_below="@+id/cardView"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Sign Up"
+        android:textSize="16sp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:backgroundTint="#656969"
+        app:cornerRadius="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signIn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,14 +45,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // Mengatur aksi saat tombol signUpqz diklik
-        signUpqz.setOnClickListener { v: View? ->
+        signUpa.setOnClickListener { v: View? ->
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         // Mengatur aksi saat tombol signin diklik
-        signin.setOnClickListener { v: View? ->
+        signIn.setOnClickListener { v: View? ->
             val email = emailEt.text.toString()
             val pass = passET.text.toString()
 

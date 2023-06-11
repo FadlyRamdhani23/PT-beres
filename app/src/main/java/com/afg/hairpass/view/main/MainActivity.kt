@@ -14,6 +14,7 @@ import com.afg.hairpass.view.input.InputDataActivity
 import com.afg.hairpass.view.cabang.cabangActivity
 import com.afg.hairpass.view.login.LoginActivity
 import com.afg.hairpass.session.sesionManager
+import com.afg.hairpass.view.akun.akunActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
@@ -36,11 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         // Logout pengguna
         imageProfile.setOnClickListener { v: View? ->
-            // Logout pengguna
-            sesionManager.logout()
-
-            // Navigasi ke aktivitas login
-            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+            val intent = Intent(this@MainActivity, akunActivity::class.java)
             startActivity(intent)
             finish()
         }
