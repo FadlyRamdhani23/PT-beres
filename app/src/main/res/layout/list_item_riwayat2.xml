@@ -18,7 +18,7 @@
         android:padding="15dp">
 
         <TextView
-            android:id="@+id/tvNama"
+            android:id="@+id/tvNama1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -27,7 +27,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvjam"
+            android:id="@+id/tvjam1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="300dp"
@@ -37,7 +37,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvDate"
+            android:id="@+id/tvDate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -54,7 +54,7 @@
             android:text="asd">
 
             <TextView
-                android:id="@+id/tvKategori"
+                android:id="@+id/tvKategori1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -71,14 +71,14 @@
                 android:text="asd">
 
                 <TextView
-                    android:id="@+id/tvBerat"
+                    android:id="@+id/tvBerat1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tvSaldo"
+                    android:id="@+id/tvSaldo1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -89,7 +89,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvStatus"
+            android:id="@+id/tvStatus1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -97,6 +97,15 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+    <ImageView
+        android:id="@+id/imageDelete2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="15dp"
+        android:src="@drawable/ic_delete"
+
+        app:tint="@color/colorPrimary" />
 
 
 

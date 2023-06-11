@@ -10,6 +10,7 @@ import com.afg.hairpass.view.input.InputDataActivity
 import com.afg.hairpass.view.login.LoginActivity
 import com.afg.hairpass.view.main.MainActivity
 import com.afg.hairpass.session.sesionManager
+import com.afg.hairpass.view.booking.activityBooking2
 import kotlinx.android.synthetic.main.activity_admin.*
 
 class AdminActivity : AppCompatActivity(){
@@ -48,7 +49,7 @@ class AdminActivity : AppCompatActivity(){
         }
 
         imgHistory.setOnClickListener { v: View? ->
-            val intent = Intent(this@AdminActivity, activityBooking::class.java)
+            val intent = Intent(this@AdminActivity, activityBooking2::class.java)
 
             startActivity(intent)
         }
