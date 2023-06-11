@@ -5,8 +5,11 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
@@ -54,8 +57,7 @@ class InputDataActivity : AppCompatActivity() {
         setToolbar()
         setInitLayout()
         setInputData()
-        updateHourTextViews()
-        checkIfDataExists()
+//        checkIfDataExists()
         setText(email)
     }
     private fun setToolbar() {
@@ -86,147 +88,335 @@ class InputDataActivity : AppCompatActivity() {
 
 
     @SuppressLint("SuspiciousIndentation")
-    private fun updateHourTextViews() {
+    private fun updateHourTextViews(selectedDate: Date) {
         val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-            if (currentHour >= 9) {
-                jam9.setImageResource(R.drawable.jam9a)
+        val selectedCalendar = Calendar.getInstance()
+        selectedCalendar.time = selectedDate
+
+        // Lakukan pembaruan tampilan jam berdasarkan tanggal yang dipilih
+        if (selectedCalendar.before(Calendar.getInstance())) {
+            // Tampilkan semua jam dalam keadaan tidak aktif
+                jam9.setImageResource(R.drawable.jam9)
+                jam10.setImageResource(R.drawable.jam10)
+                jam11.setImageResource(R.drawable.jam11)
+                jam12.setImageResource(R.drawable.jam12)
+                jam13.setImageResource(R.drawable.jam13)
+                jam14.setImageResource(R.drawable.jam14)
+                jam15.setImageResource(R.drawable.jam15)
+                jam16.setImageResource(R.drawable.jam16)
+                jam17.setImageResource(R.drawable.jam17)
+                jam18.setImageResource(R.drawable.jam18)
+                jam19.setImageResource(R.drawable.jam19)
+                jam20.setImageResource(R.drawable.jam20)
+
+        } else {
+                jam9.setImageResource(R.drawable.jam9)
+                jam10.setImageResource(R.drawable.jam10)
+                jam11.setImageResource(R.drawable.jam11)
+                jam12.setImageResource(R.drawable.jam12)
+                jam13.setImageResource(R.drawable.jam13)
+                jam14.setImageResource(R.drawable.jam14)
+                jam15.setImageResource(R.drawable.jam15)
+                jam16.setImageResource(R.drawable.jam16)
+                jam17.setImageResource(R.drawable.jam17)
+                jam18.setImageResource(R.drawable.jam18)
+                jam19.setImageResource(R.drawable.jam19)
+                jam20.setImageResource(R.drawable.jam20)
+        }
+
+        // Aktifkan jam-jam jika tanggal dipilih adalah hari esok
+        val tomorrow = Calendar.getInstance()
+        val aw = tomorrow.add(Calendar.DAY_OF_MONTH, 1)
+        if (selectedCalendar.get(Calendar.YEAR) == tomorrow.get(Calendar.YEAR) &&
+            selectedCalendar.get(Calendar.MONTH) == tomorrow.get(Calendar.MONTH) &&
+            selectedCalendar.get(Calendar.DAY_OF_MONTH) == tomorrow.get(Calendar.DAY_OF_MONTH)
+        ) {
+            val db = FirebaseFirestore.getInstance()
+            val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+            val formattedDate = dateFormat.format(tomorrow.time)
+            val collectionRef = db.collection("BOOKING")
+            val query1 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","09:00").limit(1)
+            query1.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam9.isEnabled = false
+                    jam9.setImageResource(R.drawable.jam9a)
+                }
             }
-            if (currentHour >= 10) {
-                jam10.setImageResource(R.drawable.jam11a)
+            val query2 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","10:00").limit(1)
+            query2.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam10.isEnabled = false
+                    jam10.setImageResource(R.drawable.jam10a)
+                }
             }
-            if (currentHour >= 11) {
-                jam11.setImageResource(R.drawable.jam11a)
+            val query3 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","11:00").limit(1)
+            query3.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam11.isEnabled = false
+                    jam11.setImageResource(R.drawable.jam11a)
+                }
             }
-            if (currentHour >= 12) {
-                jam12.setImageResource(R.drawable.jam12a)
+            val query4 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","12:00").limit(1)
+            query4.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam12.isEnabled = false
+                    jam12.setImageResource(R.drawable.jam12a)
+                }
             }
-            if (currentHour >= 13) {
-                jam13.setImageResource(R.drawable.jam13a)
+            val query5 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","13:00").limit(1)
+            query5.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam13.isEnabled = false
+                    jam13.setImageResource(R.drawable.jam13a)
+                }
             }
-            if (currentHour >= 14) {
-                jam14.setImageResource(R.drawable.jam14a)
+            val query6 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","14:00").limit(1)
+            query6.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam14.isEnabled = false
+                    jam14.setImageResource(R.drawable.jam14a)
+                }
             }
-            if (currentHour >= 15) {
-                jam15.setImageResource(R.drawable.jam15a)
+            val query7 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","15:00").limit(1)
+            query7.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam15.isEnabled = false
+                    jam15.setImageResource(R.drawable.jam15a)
+                }
             }
-            if (currentHour >= 16) {
-                jam16.setImageResource(R.drawable.jam16a)
+            val query8 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","16:00").limit(1)
+            query8.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam16.isEnabled = false
+                    jam16.setImageResource(R.drawable.jam16a)
+                }
             }
-            if (currentHour >= 17) {
-                jam17.setImageResource(R.drawable.jam17a)
+            val query9 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","17:00").limit(1)
+            query9.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam17.isEnabled = false
+                    jam17.setImageResource(R.drawable.jam17a)
+                }
             }
-            if (currentHour >= 18) {
-                jam18.setImageResource(R.drawable.jam18a)
+            val query10 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","18:00").limit(1)
+            query10.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam18.isEnabled = false
+                    jam18.setImageResource(R.drawable.jam18a)
+                }
             }
-            if (currentHour >= 19) {
-                jam19.setImageResource(R.drawable.jam19a)
+            val query11 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","19:00").limit(1)
+            query11.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam19.isEnabled = false
+                    jam19.setImageResource(R.drawable.jam19a)
+                }
             }
-            if (currentHour >= 20) {
-                jam20.setImageResource(R.drawable.jam20a)
+            val query12 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","20:00").limit(1)
+            query12.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam20.isEnabled = false
+                    jam20.setImageResource(R.drawable.jam20a)
+                }
             }
-        jam9.isEnabled = currentHour < 9
-        jam10.isEnabled = currentHour < 10
-        jam11.isEnabled = currentHour < 11
-        jam12.isEnabled = currentHour < 12
-        jam13.isEnabled = currentHour < 13
-        jam14.isEnabled = currentHour < 14
-        jam15.isEnabled = currentHour < 15
-        jam16.isEnabled = currentHour < 16
-        jam17.isEnabled = currentHour < 17
-        jam18.isEnabled = currentHour < 18
-        jam19.isEnabled = currentHour < 19
-        jam20.isEnabled = currentHour < 20
+
+        } else {
+            jam9.isEnabled = currentHour < 9
+            jam10.isEnabled = currentHour < 10
+            jam11.isEnabled = currentHour < 11
+            jam12.isEnabled = currentHour < 12
+            jam13.isEnabled = currentHour < 13
+            jam14.isEnabled = currentHour < 14
+            jam15.isEnabled = currentHour < 15
+            jam16.isEnabled = currentHour < 16
+            jam17.isEnabled = currentHour < 17
+            jam18.isEnabled = currentHour < 18
+            jam19.isEnabled = currentHour < 19
+            jam20.isEnabled = currentHour < 20
+
+            val today = Calendar.getInstance()
+            val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+            val formattedDate = dateFormat.format(today.time)
+            val db = FirebaseFirestore.getInstance()
+            val collectionRef = db.collection("BOOKING")
+            val query1 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","09:00").limit(1)
+            query1.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam9.isEnabled = false
+                    jam9.setImageResource(R.drawable.jam9a)
+                }
+            }
+            val query2 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","10:00").limit(1)
+            query2.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam10.isEnabled = false
+                    jam10.setImageResource(R.drawable.jam10a)
+                }
+            }
+            val query3 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","11:00").limit(1)
+            query3.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam11.isEnabled = false
+                    jam11.setImageResource(R.drawable.jam11a)
+                }
+            }
+            val query4 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","12:00").limit(1)
+            query4.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam12.isEnabled = false
+                    jam12.setImageResource(R.drawable.jam12a)
+                }
+            }
+            val query5 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","13:00").limit(1)
+            query5.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam13.isEnabled = false
+                    jam13.setImageResource(R.drawable.jam13a)
+                }
+            }
+            val query6 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","14:00").limit(1)
+            query6.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam14.isEnabled = false
+                    jam14.setImageResource(R.drawable.jam14a)
+                }
+            }
+            val query7 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","15:00").limit(1)
+            query7.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam15.isEnabled = false
+                    jam15.setImageResource(R.drawable.jam15a)
+                }
+            }
+            val query8 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","16:00").limit(1)
+            query8.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam16.isEnabled = false
+                    jam16.setImageResource(R.drawable.jam16a)
+                }
+            }
+            val query9 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","17:00").limit(1)
+            query9.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam17.isEnabled = false
+                    jam17.setImageResource(R.drawable.jam17a)
+                }
+            }
+            val query10 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","18:00").limit(1)
+            query10.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam18.isEnabled = false
+                    jam18.setImageResource(R.drawable.jam18a)
+                }
+            }
+            val query11 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","19:00").limit(1)
+            query11.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam19.isEnabled = false
+                    jam19.setImageResource(R.drawable.jam19a)
+                }
+            }
+            val query12 = collectionRef.whereEqualTo("tanggal",formattedDate).whereEqualTo("Jam","20:00").limit(1)
+            query12.get().addOnSuccessListener { documents ->
+                if (documents.size() > 0) {
+                    jam20.isEnabled = false
+                    jam20.setImageResource(R.drawable.jam20a)
+                }
+            }
+        }
     }
 
-    private fun checkIfDataExists(): Boolean {
-        val db = FirebaseFirestore.getInstance()
-        val collectionRef = db.collection("BOOKING")
-        val query1 = collectionRef.whereEqualTo("Jam","09:00").limit(1)
-        query1.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam9.isEnabled = false
-                jam9.setImageResource(R.drawable.jam9a)
-            }
-        }
-        val query2 = collectionRef.whereEqualTo("Jam","10:00").limit(1)
-        query2.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam10.isEnabled = false
-                jam10.setImageResource(R.drawable.jam10a)
-            }
-        }
-        val query3 = collectionRef.whereEqualTo("Jam","11:00").limit(1)
-        query3.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam11.isEnabled = false
-                jam11.setImageResource(R.drawable.jam11a)
-            }
-        }
-        val query4 = collectionRef.whereEqualTo("Jam","12:00").limit(1)
-        query4.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam12.isEnabled = false
-                jam12.setImageResource(R.drawable.jam12a)
-            }
-        }
-        val query5 = collectionRef.whereEqualTo("Jam","13:00").limit(1)
-        query5.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam13.isEnabled = false
-                jam13.setImageResource(R.drawable.jam13a)
-            }
-        }
-        val query6 = collectionRef.whereEqualTo("Jam","14:00").limit(1)
-        query6.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam14.isEnabled = false
-                jam14.setImageResource(R.drawable.jam14a)
-            }
-        }
-        val query7 = collectionRef.whereEqualTo("Jam","15:00").limit(1)
-        query7.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam15.isEnabled = false
-                jam15.setImageResource(R.drawable.jam15a)
-            }
-        }
-        val query8 = collectionRef.whereEqualTo("Jam","16:00").limit(1)
-        query8.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam16.isEnabled = false
-                jam16.setImageResource(R.drawable.jam16a)
-            }
-        }
-        val query9 = collectionRef.whereEqualTo("Jam","17:00").limit(1)
-        query9.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam17.isEnabled = false
-                jam17.setImageResource(R.drawable.jam17a)
-            }
-        }
-        val query10 = collectionRef.whereEqualTo("Jam","18:00").limit(1)
-        query10.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam18.isEnabled = false
-                jam18.setImageResource(R.drawable.jam18a)
-            }
-        }
-        val query11 = collectionRef.whereEqualTo("Jam","19:00").limit(1)
-        query11.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam19.isEnabled = false
-                jam19.setImageResource(R.drawable.jam19a)
-            }
-        }
-        val query12 = collectionRef.whereEqualTo("Jam","20:00").limit(1)
-        query12.get().addOnSuccessListener { documents ->
-            if (documents.size() > 0) {
-                jam20.isEnabled = false
-                jam20.setImageResource(R.drawable.jam20a)
-            }
-        }
-        return false // Mengembalikan nilai default (dalam contoh ini, false)
-    }
+//    private fun checkIfDataExists(): Boolean {
+//        val db = FirebaseFirestore.getInstance()
+//        val collectionRef = db.collection("BOOKING")
+//        val query1 = collectionRef.whereEqualTo("Jam","09:00").limit(1)
+//        query1.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam9.isEnabled = false
+//                jam9.setImageResource(R.drawable.jam9a)
+//            }
+//        } .addOnFailureListener { exception ->
+//            Toast.makeText(this@InputDataActivity, "Username atau password salah", Toast.LENGTH_SHORT).show()
+//        }
+//        val query2 = collectionRef.whereEqualTo("Jam","10:00").limit(1)
+//        query2.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam10.isEnabled = false
+//                jam10.setImageResource(R.drawable.jam10a)
+//            }
+//        }
+//        val query3 = collectionRef.whereEqualTo("Jam","11:00").limit(1)
+//        query3.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam11.isEnabled = false
+//                jam11.setImageResource(R.drawable.jam11a)
+//            }
+//        }
+//        val query4 = collectionRef.whereEqualTo("Jam","12:00").limit(1)
+//        query4.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam12.isEnabled = false
+//                jam12.setImageResource(R.drawable.jam12a)
+//            }
+//        }
+//        val query5 = collectionRef.whereEqualTo("Jam","13:00").limit(1)
+//        query5.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam13.isEnabled = false
+//                jam13.setImageResource(R.drawable.jam13a)
+//            }
+//        }
+//        val query6 = collectionRef.whereEqualTo("Jam","14:00").limit(1)
+//        query6.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam14.isEnabled = false
+//                jam14.setImageResource(R.drawable.jam14a)
+//            }
+//        }
+//        val query7 = collectionRef.whereEqualTo("Jam","15:00").limit(1)
+//        query7.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam15.isEnabled = false
+//                jam15.setImageResource(R.drawable.jam15a)
+//            }
+//        }
+//        val query8 = collectionRef.whereEqualTo("Jam","16:00").limit(1)
+//        query8.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam16.isEnabled = false
+//                jam16.setImageResource(R.drawable.jam16a)
+//            }
+//        }
+//        val query9 = collectionRef.whereEqualTo("Jam","17:00").limit(1)
+//        query9.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam17.isEnabled = false
+//                jam17.setImageResource(R.drawable.jam17a)
+//            }
+//        }
+//        val query10 = collectionRef.whereEqualTo("Jam","18:00").limit(1)
+//        query10.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam18.isEnabled = false
+//                jam18.setImageResource(R.drawable.jam18a)
+//            }
+//        }
+//        val query11 = collectionRef.whereEqualTo("Jam","19:00").limit(1)
+//        query11.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam19.isEnabled = false
+//                jam19.setImageResource(R.drawable.jam19a)
+//            }
+//        }
+//        val query12 = collectionRef.whereEqualTo("Jam","20:00").limit(1)
+//        query12.get().addOnSuccessListener { documents ->
+//            if (documents.size() > 0) {
+//                jam20.isEnabled = false
+//                jam20.setImageResource(R.drawable.jam20a)
+//            }
+//        }
+//        return false // Mengembalikan nilai default (dalam contoh ini, false)
+//    }
 
     private fun setInitLayout() {
         strKategori = resources.getStringArray(R.array.kategori_cabang)
@@ -278,7 +468,7 @@ class InputDataActivity : AppCompatActivity() {
                 isSeatSelected = false
             } else {
                 // Kode untuk memilih kursi, misalnya menampilkan dialog konfirmasi atau mengubah tampilan kursi terpilih
-                jam12.setImageResource(R.drawable.jam12g)
+                jam12.setImageResource(R.drawable.jam18g)
                 isSeatSelected = true
             }
         }
@@ -356,7 +546,7 @@ class InputDataActivity : AppCompatActivity() {
                 isSeatSelected = false
             } else {
                 // Kode untuk memilih kursi, misalnya menampilkan dialog konfirmasi atau mengubah tampilan kursi terpilih
-                jam18.setImageResource(R.drawable.jam18g)
+                jam18.setImageResource(R.drawable.jam12g)
                 isSeatSelected = true
             }
         }
@@ -424,32 +614,39 @@ class InputDataActivity : AppCompatActivity() {
             }
         })
 
-        btnTanggal.setOnClickListener { view: View? ->
-            val tanggalJemput = Calendar.getInstance()
+        btnTanggal.setOnClickListener {
             val now = Calendar.getInstance()
 
-            val date =
-                OnDateSetListener { view1: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                    tanggalJemput[Calendar.YEAR] = year
-                    tanggalJemput[Calendar.MONTH] = monthOfYear
-                    tanggalJemput[Calendar.DAY_OF_MONTH] = dayOfMonth
-                    val strFormatDefault = "d MMMM yyyy"
-                    val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
-                    inputTanggal.setText(simpleDateFormat.format(tanggalJemput.time))
-                }
-
             val datePickerDialog = DatePickerDialog(
-                this@InputDataActivity, date,
-                tanggalJemput[Calendar.YEAR],
-                tanggalJemput[Calendar.MONTH],
-                tanggalJemput[Calendar.DAY_OF_MONTH]
+                this@InputDataActivity,
+                { _, year, month, dayOfMonth ->
+                    val selectedCalendar = Calendar.getInstance()
+                    selectedCalendar.set(Calendar.YEAR, year)
+                    selectedCalendar.set(Calendar.MONTH, month)
+                    selectedCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    val selectedDate = selectedCalendar.time
+
+                    inputTanggal.setText(SimpleDateFormat("d MMMM yyyy", Locale.getDefault()).format(selectedDate))
+                    updateHourTextViews(selectedDate) // Panggil fungsi updateHourTextViews dengan selectedDate sebagai parameter
+                },
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
             )
 
             // Batasi pemilihan tanggal hanya pada tanggal sekarang dan seterusnya
             datePickerDialog.datePicker.minDate = now.timeInMillis
 
+            val midnightTomorrow = Calendar.getInstance()
+            midnightTomorrow[Calendar.HOUR_OF_DAY] = 0
+            midnightTomorrow[Calendar.MINUTE] = 0
+            midnightTomorrow[Calendar.SECOND] = 0
+            midnightTomorrow.add(Calendar.DAY_OF_MONTH, 1)
+            datePickerDialog.datePicker.maxDate = midnightTomorrow.timeInMillis
+
             datePickerDialog.show()
         }
+
 
 
 
