@@ -3,6 +3,7 @@ package com.afg.hairpass.view.booking
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afg.hairpass.R
@@ -11,7 +12,7 @@ import com.afg.hairpass.view.admin.BookingAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_riwayat.*
 
-class activityBooking : AppCompatActivity(){
+class activityBooking : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,11 +23,12 @@ class activityBooking : AppCompatActivity(){
         getData()
         setToolbar()
     }
+
     private fun setToolbar() {
         setSupportActionBar(toolbar)
-        if (supportActionBar != null) {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
         }
     }
 
@@ -37,39 +39,53 @@ class activityBooking : AppCompatActivity(){
         }
         return super.onOptionsItemSelected(item)
     }
-    private fun getData(){
+
+    private fun hapus(id: String) {
+        db.collection("BOOKING")
+            .document(id)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
+                getData()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Gagal menghapus data: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun getData() {
         db.collection("BOOKING")
             .get()
-            .addOnSuccessListener {
-                var listBooking:ArrayList<bookingModel> = ArrayList()
-                listBooking.clear()
+            .addOnSuccessListener { result ->
+                val listBooking: ArrayList<bookingModel> = ArrayList()
 
-
-                for (document in it){
-                    listBooking.add((bookingModel(
+                for (document in result) {
+                    val booking = bookingModel(
                         document.id as String,
-                        document.data.get("Jam")as String,
-                        document.data.get("Jumlah")as String,
-                        document.data.get("berat")as String,
-                        document.data.get("cabang")as String,
-                        document.data.get("catatan")as String,
-                        document.data.get("name")as String,
-                        document.data.get("tanggal")as String,
-
-                    )))
-
+                        document.data["Jam"] as String,
+                        document.data["Jumlah"] as String,
+                        document.data["berat"] as String,
+                        document.data["cabang"] as String,
+                        document.data["catatan"] as String,
+                        document.data["name"] as String,
+                        document.data["tanggal"] as String
+                    )
+                    listBooking.add(booking)
                 }
 
-                var BookingAdapter = BookingAdapter(listBooking)
+                val bookingAdapter = BookingAdapter(listBooking)
                 rvHistory.apply {
                     layoutManager = LinearLayoutManager(context)
-                    adapter = BookingAdapter
-                    rvHistory.setHasFixedSize(true)
-
+                    adapter = bookingAdapter
+                    setHasFixedSize(true)
+                }
+                // Set aksi klik pada imageDelete
+                bookingAdapter.setOnDeleteClickListener { id ->
+                    hapus(id)
                 }
             }
-            .addOnFailureListener{
-                Log.d("TAG", "Error getting documents: ")
+            .addOnFailureListener { exception ->
+                Log.d("TAG", "Error getting documents: $exception")
             }
     }
 }

@@ -57,7 +57,7 @@ class InputDataActivity : AppCompatActivity() {
         setToolbar()
         setInitLayout()
         setInputData()
-//        checkIfDataExists()
+//        disableJam()
         setText(email)
     }
     private fun setToolbar() {
@@ -80,12 +80,41 @@ class InputDataActivity : AppCompatActivity() {
         if(email!=null) {
             db.collection("USERS").document(email).get()
                 .addOnSuccessListener {
-                    inputNama.setText(it.get("name").toString())
-
+                    if(email != "admin@gmail.com"){
+                        inputNama.setText(it.get("name").toString())
+                    }
                 }
         }
     }
 
+//    private fun disableJam(){
+//        tvJam.visibility = View.GONE
+//        inputJam.visibility = View.GONE
+//        jam9.isEnabled = false
+//        jam9.setImageResource(R.drawable.jam9a)
+//        jam10.isEnabled = false
+//        jam10.setImageResource(R.drawable.jam10a)
+//        jam11.isEnabled = false
+//        jam11.setImageResource(R.drawable.jam11a)
+//        jam12.isEnabled = false
+//        jam12.setImageResource(R.drawable.jam12a)
+//        jam13.isEnabled = false
+//        jam13.setImageResource(R.drawable.jam13a)
+//        jam14.isEnabled = false
+//        jam14.setImageResource(R.drawable.jam14a)
+//        jam15.isEnabled = false
+//        jam15.setImageResource(R.drawable.jam15a)
+//        jam16.isEnabled = false
+//        jam16.setImageResource(R.drawable.jam16a)
+//        jam17.isEnabled = false
+//        jam17.setImageResource(R.drawable.jam17a)
+//        jam18.isEnabled = false
+//        jam18.setImageResource(R.drawable.jam18a)
+//        jam19.isEnabled = false
+//        jam19.setImageResource(R.drawable.jam19a)
+//        jam20.isEnabled = false
+//        jam20.setImageResource(R.drawable.jam20a)
+//    }
 
     @SuppressLint("SuspiciousIndentation")
     private fun updateHourTextViews(selectedDate: Date) {
@@ -95,6 +124,7 @@ class InputDataActivity : AppCompatActivity() {
 
         // Lakukan pembaruan tampilan jam berdasarkan tanggal yang dipilih
         if (selectedCalendar.before(Calendar.getInstance())) {
+            cekcjam.visibility = View.GONE
             // Tampilkan semua jam dalam keadaan tidak aktif
                 jam9.setImageResource(R.drawable.jam9)
                 jam10.setImageResource(R.drawable.jam10)
@@ -122,9 +152,22 @@ class InputDataActivity : AppCompatActivity() {
                 jam18.setImageResource(R.drawable.jam18)
                 jam19.setImageResource(R.drawable.jam19)
                 jam20.setImageResource(R.drawable.jam20)
+            jam9.isEnabled = true
+            jam10.isEnabled = true
+            jam11.isEnabled = true
+            jam12.isEnabled = true
+            jam13.isEnabled = true
+            jam14.isEnabled = true
+            jam15.isEnabled = true
+            jam16.isEnabled = true
+            jam17.isEnabled = true
+            jam18.isEnabled = true
+            jam19.isEnabled = true
+            jam20.isEnabled = true
         }
 
         // Aktifkan jam-jam jika tanggal dipilih adalah hari esok
+        val today = Calendar.getInstance()
         val tomorrow = Calendar.getInstance()
         val aw = tomorrow.add(Calendar.DAY_OF_MONTH, 1)
         if (selectedCalendar.get(Calendar.YEAR) == tomorrow.get(Calendar.YEAR) &&
@@ -220,7 +263,11 @@ class InputDataActivity : AppCompatActivity() {
                 }
             }
 
-        } else {
+        }else if (selectedCalendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+            selectedCalendar.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
+            selectedCalendar.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH)
+        ) {
+            cekcjam.visibility = View.GONE
             val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
             if (currentHour >= 9) {
                 jam9.setImageResource(R.drawable.jam9a)
@@ -259,6 +306,7 @@ class InputDataActivity : AppCompatActivity() {
                 jam20.setImageResource(R.drawable.jam20a)
             }
 
+
             jam9.isEnabled = currentHour < 9
             jam10.isEnabled = currentHour < 10
             jam11.isEnabled = currentHour < 11
@@ -272,7 +320,6 @@ class InputDataActivity : AppCompatActivity() {
             jam19.isEnabled = currentHour < 19
             jam20.isEnabled = currentHour < 20
 
-            val today = Calendar.getInstance()
             val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
             val formattedDate = dateFormat.format(today.time)
             val db = FirebaseFirestore.getInstance()
@@ -361,6 +408,19 @@ class InputDataActivity : AppCompatActivity() {
                     jam20.setImageResource(R.drawable.jam20a)
                 }
             }
+        }else{
+            jam9.isEnabled = false
+            jam10.isEnabled = false
+            jam11.isEnabled = false
+            jam12.isEnabled = false
+            jam13.isEnabled = false
+            jam14.isEnabled = false
+            jam15.isEnabled = false
+            jam16.isEnabled = false
+            jam17.isEnabled = false
+            jam18.isEnabled = false
+            jam19.isEnabled = false
+            jam20.isEnabled = false
         }
     }
     private fun setInitLayout() {
