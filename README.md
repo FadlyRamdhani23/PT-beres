@@ -1,2 +1,2 @@
-# PT-beres
+# HairPass Studio
 hairpast studio
